@@ -1,0 +1,46 @@
+#Replace Unity with i3 window manager on ubuntu
+
+#IF you decide that unity is not good for you, you can replace it with i3. i3 window manager is easy to learn and could help 
+you to improve productivity.
+#
+
+#installing i3
+#Open terminal
+#preferably using Sudo
+
+sudo apt-get update
+sudo apt-get --allow-unauthenticated install sur5r-keyring
+sudo apt-get update
+sudo apt-get install i3
+
+#now you use i3, let make sure it works
+Logout of Unity
+From the login screen, click the circle icon above your user account
+Select “i3”
+Login with your password
+i3 will offer to create a config file. Press enter to create it
+i3 will ask you to choose a modifier key. Choose the key you’d like by pressing it on the keyboard and then press enter
+
+#To logout of i3, 
+open a terminal and run the command i3-msg exit
+
+#Removing Unity
+#if you like i3 and want to remove unity you could do that
+sudo apt-get autoremove --purge compiz compiz-gnome compiz-plugins-default libcompizconfig0
+
+sudo apt-get autoremove --purge unity unity-common unity-services unity-lens-* unity-scope-* libunity-core-6* libunity-misc4 
+appmenu-gtk appmenu-gtk3 appmenu-qt* overlay-scrollbar* activity-log-manager-control-center firefox-globalmenu thunderbird-globalmenu
+# the following command will disable the desktop (we won't need it with i3!)
+gsettings set org.gnome.desktop.background show-desktop-icons false
+
+#Configuring lightdm
+#Because we remove unity, you need to reconfigure the login manager.
+Run the command sudo nano ~/.xinitrc
+Type into the file exec i3
+Save the file using Ctrl + O
+Exit the file using Ctrl + X
+Run the command sudo nano /etc/lightdm/lightdm.conf
+Change the line with user-session to read user-session=i3
+Save the file using Ctrl + O
+Exit the file using Ctrl + X
+Restart your computer with the command sudo init 6
