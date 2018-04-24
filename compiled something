@@ -18,18 +18,21 @@ zless fancy.patch.gz
    char *sort = NULL;
 +  char *threadsort = NULL;
 
-o apply a patch, you need the (surprise!) “patch” command. You can test the effects of the patch without actually changing the code 
-using the “–dry-run” option like so:
+# apply a patch, you need the (surprise!) “patch” command. You can test the effects of the patch without actually changing the code 
+#using the “–dry-run” option like so:
 zcat fancy.patch.gz | patch -p1 --dry-run
+
 # “zcat” extracts the patch into plain text, and then it’s piped with the “|” 
 # “-p1″ here because we’re already inside the source code directory
 #if you’re outside it or the patch doesn’t work, try removing it. 
 #Once you execute this command, you’ll see lines like:
+
 patching file alpine/setup.c
 #If it all works, re-run the command omitting the “–dry-run” option, and the changes will be made permanent.
 
 #configuration
 ./configure --help | less
+
 # Scroll down and you’ll see that there’s a huge list of options you can change
 # scroll down to the “Optional Features” section
 # section you’ll find features specific to Alpine
